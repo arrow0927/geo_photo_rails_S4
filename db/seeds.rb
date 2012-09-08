@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Photo.create(lat: '49.2505', lng: '-123.1119')
+Photo.create(lat: '49.2515', lng: '-123.1109')

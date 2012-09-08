@@ -11,6 +11,11 @@ end
 
 module App0907api
   class Application < Rails::Application
+    #Added by Ash per railscasts http://railscasts.com/episodes/348-the-rails-api-gem?autoplay=true
+    config.middleware.insert_after ActiveRecord::QueryCache, ActionDispatch::Cookies
+    
+    
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

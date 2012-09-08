@@ -1,4 +1,6 @@
 App0907api::Application.routes.draw do
+  resources :photos, except: :edit
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

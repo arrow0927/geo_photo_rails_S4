@@ -13,6 +13,16 @@ gem 'thin'
 
 gem 'foreman'
 
+gem 'rabl'
+
+gem 'paperclip', '~>3.2.0'
+gem 'aws-sdk', '~>1.3.4'
+
+group :development do
+	#gem 'annotate', :git=>'git://github.com/ctran/annotate_models.git'
+	gem 'annotate', ">=2.5.0"
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
