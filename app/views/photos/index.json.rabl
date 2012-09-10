@@ -1,2 +1,2 @@
-collection @photos
-attributes :id, :lat, :lng
+collection @photos => :photos 
+attributes :lat, :lng
