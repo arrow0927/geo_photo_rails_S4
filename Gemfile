@@ -21,6 +21,7 @@ gem 'aws-sdk', '~>1.3.4'
 group :development do
 	#gem 'annotate', :git=>'git://github.com/ctran/annotate_models.git'
 	gem 'annotate', ">=2.5.0"
+	gem 'debugger'
 end
 
 # To use ActiveModel has_secure_password

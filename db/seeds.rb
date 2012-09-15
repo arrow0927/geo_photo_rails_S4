@@ -7,3 +7,4 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Photo.create(lat: '49.2505', lng: '-123.1119')
 Photo.create(lat: '49.2515', lng: '-123.1109')
+Photo.create(lat: '37.7839', lng: '-122.4072')

@@ -8,8 +8,19 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.all
+    
 
+     lat, lng = params[:lat], params[:lng]
+      if lat and lng
+        @photos = Photo.nearby(lat.to_f, lng.to_f)
+        #@photos = Photo.all
+      else
+        @photos = Photo.all
+        #respond_with({:message => "Invalid or missing lat/lng parameters"}, :status => 406)
+      end
+
+    #@photos = Photo.all
+    
     #No respond to block is necessary because implicit rendering module included
   end
 
@@ -36,7 +47,9 @@ class PhotosController < ApplicationController
   # POST /photos
   # POST /photos.json
   def create
+    #debugger
     @photo = Photo.new(params[:photo])
+    puts @photos
 
     #No respond to block is necessary because implicit rendering module included
   end
