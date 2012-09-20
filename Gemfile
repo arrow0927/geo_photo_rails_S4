@@ -9,6 +9,8 @@ gem 'rails-api'
 
 gem 'pg'
 
+gem 'taps'
+
 gem 'thin'
 
 gem 'foreman'
