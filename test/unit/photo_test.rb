@@ -3,8 +3,8 @@
 # Table name: photos
 #
 #  id                 :integer          not null, primary key
-#  lat                :decimal(15, 10)
-#  lng                :decimal(15, 10)
+#  lat                :string(255)
+#  lng                :string(255)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  image_file_name    :string(255)

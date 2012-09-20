@@ -8,12 +8,10 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    
-
-     lat, lng = params[:lat], params[:lng]
+    lat, lng = params[:lat], params[:lng]
       if lat and lng
-        @photos = Photo.nearby(lat.to_f, lng.to_f)
-        #@photos = Photo.all
+        #@photos = Photo.nearby(lat.to_f, lng.to_f)
+        @photos = Photo.all
       else
         @photos = Photo.all
         #respond_with({:message => "Invalid or missing lat/lng parameters"}, :status => 406)
@@ -29,7 +27,7 @@ class PhotosController < ApplicationController
   # GET /photos/1.json
   def show
     @photo = Photo.find(params[:id])
-
+    
     #No respond to block is necessary because implicit rendering module included
   end
 
@@ -47,11 +45,25 @@ class PhotosController < ApplicationController
   # POST /photos
   # POST /photos.json
   def create
-    #debugger
+    
     @photo = Photo.new(params[:photo])
-    puts @photos
+    #For some reason when the client sends a photo it cannot be saved 
+    #to db because the lat and lng parameters are not saved to the object
+    #This causes the DB save method in rails to roll back - see console
+    #@photo.lat = 37.1250
+    #@photo.lng = -122.4183
+    @photo.lat = params["photo%5Blat%5D"].to_s
+    @photo.lng = params["photo%5Blng%5D"].to_s
+    #@photo.image_file_name = "#{Time.zone.now.utc.iso8601}_#{params[:original_filename]}"
+    puts "photos_controller/create-@photo.lat = #{@photo.lat}"
+    puts "photos_controller/create-@photo.lng = #{@photo.lng}"
+    #puts "photos_controller/create-@photo.lng = #{@photo.image_file_name}"
+    @photo.save
+    
+    puts "photos/create photos.inspect= #{@photo.inspect}"
 
-    #No respond to block is necessary because implicit rendering module included
+   
+    
   end
 
   #==========================================================================
