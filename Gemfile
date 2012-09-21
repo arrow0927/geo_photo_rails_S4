@@ -22,7 +22,7 @@ gem 'paperclip', '~>3.2.0'
 gem 'aws-sdk', '~>1.3.4'
 
 group :development do
-	gem 'sqlite3'
+	
 	gem 'annotate', ">=2.5.0"
 	gem 'debugger'
 end
