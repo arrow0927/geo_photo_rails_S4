@@ -11,26 +11,22 @@
 #  image_content_type :string(255)
 #  image_file_size    :integer
 #  image_updated_at   :datetime
+#  description        :string(255)
+#  takenby            :string(255)
 #
 
 class Photo < ActiveRecord::Base
   
    COORDINATE_DELTA = 0.05
-   
   attr_accessible :lat, :lng, :image
-
-  #This method sets the folder structure that Paperclip will use to save the files on AWS
-   #The first bit sets the folder name to the user email and the second bit sets the name of the
-   #internal folder to the datetime the file was created
-  #Paperclip.interpolates :prefix  do |attachment, style|
-   #  "Leah_Huyghe/#{Date.today.to_s }"
-
-  #end
   
+  Paperclip.interpolates :prefix  do |attachment, style|
+     "#{attachment.instance.takenby}/#{Date.today.to_s }/#{attachment.instance.image_file_name}"
+  end 
   
   has_attached_file :image,
-                    #:path => ":prefix/:basename.:extension",
-                    :styles => { :thumbnail => "57x57#" },
+                    :path => ":prefix/:style/:basename.:extension",
+                    :styles => { :thumbnail => "75x75", :original => "300x300" },
                     :storage => :s3,
                     :s3_credentials => S3_CREDENTIALS
   

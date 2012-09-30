@@ -13,7 +13,10 @@ class PhotosController < ApplicationController
         #@photos = Photo.nearby(lat.to_f, lng.to_f)
         @photos = Photo.all
       else
-        @photos = Photo.all
+        #COORDINATE_DELTA = 0.05
+        
+       
+        #@photos = Photo.where("lat BETWEEN ? AND ?", lat - COORDINATE_DELTA, lat + COORDINATE_DELTA).where("lng BETWEEN ? AND ?", lng - COORDINATE_DELTA, lng + COORDINATE_DELTA).limit(64)
         #respond_with({:message => "Invalid or missing lat/lng parameters"}, :status => 406)
       end
 
@@ -47,13 +50,16 @@ class PhotosController < ApplicationController
   def create
     
     @photo = Photo.new(params[:photo])
+    @photo.lat = params["photo%5Blat%5D"].to_s
+    @photo.lng = params["photo%5Blng%5D"].to_s
+    @photo.description = params[:description]
+    @photo.takenby = params[:takenby].to_s
+    @filename = params[:fname].to_s
     #For some reason when the client sends a photo it cannot be saved 
     #to db because the lat and lng parameters are not saved to the object
     #This causes the DB save method in rails to roll back - see console
-    #@photo.lat = 37.1250
-    #@photo.lng = -122.4183
-    @photo.lat = params["photo%5Blat%5D"].to_s
-    @photo.lng = params["photo%5Blng%5D"].to_s
+    #@photo.lat = 49.2505
+    #@photo.lng = -123.1119
     #@photo.image_file_name = "#{Time.zone.now.utc.iso8601}_#{params[:original_filename]}"
     puts "photos_controller/create-@photo.lat = #{@photo.lat}"
     puts "photos_controller/create-@photo.lng = #{@photo.lng}"
