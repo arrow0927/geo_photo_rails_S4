@@ -18,7 +18,7 @@ class PhotosController < ApplicationController
        
         #@photos = Photo.where("lat BETWEEN ? AND ?", lat - COORDINATE_DELTA, lat + COORDINATE_DELTA).where("lng BETWEEN ? AND ?", lng - COORDINATE_DELTA, lng + COORDINATE_DELTA).limit(64)
         #respond_with({:message => "Invalid or missing lat/lng parameters"}, :status => 406)
-      #end
+      end
 
     #@photos = Photo.all
     
