@@ -27,7 +27,7 @@ class Photo < ActiveRecord::Base
   
   has_attached_file :image,
                     :path => ":prefix/:style/:basename.:extension",
-                    :styles => { :thumbnail => "57x57", :original => "300x300" },
+                    :styles => { :thumbnail => "57x57", :original => "1136x640" },
                     :storage => :s3,
                     :s3_credentials => S3_CREDENTIALS
   
