@@ -21,7 +21,8 @@ class Photo < ActiveRecord::Base
   attr_accessible :lat, :lng, :image
   
   Paperclip.interpolates :prefix  do |attachment, style|
-     "#{attachment.instance.takenby}/#{Date.today.to_s }/#{attachment.instance.image_file_name}"
+     //"#{attachment.instance.takenby}/#{Date.today.to_s }/#{attachment.instance.image_file_name}"
+    "#{attachment.instance.takenby}/#{attachment.instance.image_file_name}"
   end 
   
   has_attached_file :image,
